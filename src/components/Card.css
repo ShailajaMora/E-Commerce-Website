@@ -1,0 +1,17 @@
+.addToCart {
+    background-color: yellow;
+    color: black;
+    border-radius: 10px;
+    font-weight: bold;
+    font-family: sans-serif;
+    padding: 10px 30px;
+}
+
+.name {
+    color: blue;
+    font-weight: bold;
+}
+
+.price {
+    font-weight: 600;
+}

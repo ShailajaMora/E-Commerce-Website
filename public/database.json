@@ -1,0 +1,32 @@
+[
+    {
+        "productId": 1,
+        "productName": "Nokia G21",
+        "productPrice": 13199,
+        "productImage": "/images/Nokia_G21.png"
+    },
+    {
+        "productId": 2,
+        "productName": "OnePlus Nord CE2",
+        "productPrice": 17999,
+        "productImage": "/images/OnePlus_Nord_CE3.png"
+    },
+    {
+        "productId": 3,
+        "productName": "Realme Narzo",
+        "productPrice": 13999,
+        "productImage": "/images/Realme_Narzo.png"
+    },
+    {
+        "productId": 4,
+        "productName": "Redmi 12C",
+        "productPrice": 8799,
+        "productImage": "/images/Redmi_12C.png"
+    },
+    {
+        "productId": 5,
+        "productName": "Samsung Galaxy M04",
+        "productPrice": 8299,
+        "productImage": "/images/Samsung_Galaxy_M04.png"
+    }
+]
