@@ -1,0 +1,16 @@
+.container {
+    background-color: beige;
+}
+
+.products {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin: auto;
+}
+
+.cart {
+    position: fixed;
+    top: 80px;
+    right: 50px;
+}
