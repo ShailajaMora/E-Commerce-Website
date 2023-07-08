@@ -15,3 +15,22 @@
 .price {
     font-weight: 600;
 }
+
+.product-card {
+    margin: 20px;
+}
+
+.product-image {
+    width: 275px;
+
+    /* desktop*/
+    @media screen and (min-width: 576px) and (max-width: 768px) {
+        width: 175px;
+        /* tablet*/
+    }
+
+    @media screen and (max-width: 576px) {
+        width: 250px;
+        /* mobile*/
+    }
+}

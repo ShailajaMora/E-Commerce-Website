@@ -23,27 +23,28 @@ function Home() {
         <div className="container">
             <h1> PRODUCTS </h1>
             <h2> Mobile Phones</h2>
-            <div className="cart">
+            <div className="cart d-flex justify-content-center align-items-center">
                 <Link
                     to={{
                         pathname: "/checkout",
                         state: cart,
                     }}
                 >
-                    Cart
+                    <i class="bi bi-cart-fill"></i>
                 </Link>
                 <span className="cart-count">{cart.length}</span>
             </div>
-
-            <div className="products">
+            <div className="products row">
                 {products.map((product) => {
-                    return <Card
-                        showCart={true}
-                        productName={product.productName}
-                        productPrice={product.productPrice}
-                        productImage={product.productImage}
-                        addToCart={handleAddToCart}
-                    />;
+                    return <div className="col-xs-12 col-sm-6 col-md-4">
+                        <Card
+                            showCart={true}
+                            productName={product.productName}
+                            productPrice={product.productPrice}
+                            productImage={product.productImage}
+                            addToCart={handleAddToCart}
+                        />
+                    </div>;
                 })}
             </div>
         </div>

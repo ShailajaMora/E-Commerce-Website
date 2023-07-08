@@ -1,8 +1,12 @@
+import { Button } from "react-bootstrap";
 import "./Card.css";
+
 function Card(props) {
     return (
-        <div>
-            <img src={props.productImage} />
+        <div className="product-card">
+            <div>
+                <img className="product-image" src={props.productImage} />
+            </div>
             <div>
                 <div>
                     <span className="name">{props.productName}</span>
@@ -11,12 +15,12 @@ function Card(props) {
                 </div>
                 {props.showCart && (
                     <div>
-                        <button className="addToCart" onClick={() =>
+                        <Button onClick={() =>
                             props.addToCart({
                                 productName: props.productName,
                                 productImage: props.productImage,
                                 productPrice: props.productPrice,
-                            })}> Add To Cart</button>
+                            })}> Add To Cart</Button>
                     </div>
 
                 )}
