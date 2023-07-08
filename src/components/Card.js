@@ -1,7 +1,19 @@
 import { Button } from "react-bootstrap";
+import { useState } from "react";
 import "./Card.css";
 
 function Card(props) {
+    const handleAddToCart = () => {
+        props.addToCart({
+            productName: props.productName,
+            productImage: props.productImage,
+            productPrice: props.productPrice,
+            productId: props.productId
+        })
+    };
+    const handleRemoveFromCart = () => {
+        props.removeFromCart(props.productId);
+    }
     return (
         <div className="product-card">
             <div>
@@ -9,20 +21,14 @@ function Card(props) {
             </div>
             <div>
                 <div>
-                    <span className="name">{props.productName}</span>
-                    <br />
-                    <span className="price">Rs. {props.productPrice}/-</span>
+                    <div className="name my-2">{props.productName}</div>
+                    <div className="price my-2">Rs. {props.productPrice}/-</div>
                 </div>
                 {props.showCart && (
                     <div>
-                        <Button onClick={() =>
-                            props.addToCart({
-                                productName: props.productName,
-                                productImage: props.productImage,
-                                productPrice: props.productPrice,
-                            })}> Add To Cart</Button>
+                        {!props.isAdded && <Button onClick={handleAddToCart}> Add To Cart</Button>}
+                        {props.isAdded && <Button onClick={handleRemoveFromCart}> Remove From Cart</Button>}
                     </div>
-
                 )}
             </div>
         </div>

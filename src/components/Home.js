@@ -1,19 +1,40 @@
 import axios from "axios";
 import Card from "./Card.js";
 import "./home.css";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
 import { Link } from "react-router-dom/cjs/react-router-dom.min";
+import { CartContext } from "../contexts/CartContext.js";
 
 function Home() {
     const [products, setProducts] = useState([]);
-    const [cart, setCart] = useState([]);
+    const { addToCart, cartItems, removeFromCart } = useContext(CartContext);
     const fetchProducts = async () => {
         const response = await axios.get("/database.json");
-        setProducts(response.data);
+        setProducts(response.data.map(product => {
+            if (cartItems.map(cartItem => cartItem.productId).includes(product.productId)) {
+                return { ...product, isAdded: true }
+            }
+            return product;
+        }));
     };
-    const handleAddToCart = (product) => {
-        setCart([...cart, product]);
+    const handleAddToCart = (selectedProduct) => {
+        setProducts(products.map(product => {
+            if (product.productId === selectedProduct.productId) {
+                return { ...product, isAdded: true }
+            }
+            return product;
+        }));
+        addToCart(selectedProduct);
     };
+    const handleRemoveFromCart = (productId) => {
+        setProducts(products.map(product => {
+            if (product.productId === productId) {
+                return { ...product, isAdded: false }
+            }
+            return product;
+        }));
+        removeFromCart(productId);
+    }
 
     useEffect(() => {
         fetchProducts();
@@ -21,18 +42,16 @@ function Home() {
 
     return (
         <div className="container">
-            <h1> PRODUCTS </h1>
             <h2> Mobile Phones</h2>
             <div className="cart d-flex justify-content-center align-items-center">
                 <Link
                     to={{
-                        pathname: "/checkout",
-                        state: cart,
+                        pathname: "/checkout"
                     }}
                 >
                     <i class="bi bi-cart-fill"></i>
                 </Link>
-                <span className="cart-count">{cart.length}</span>
+                <span className="cart-count">{cartItems.length}</span>
             </div>
             <div className="products row">
                 {products.map((product) => {
@@ -42,7 +61,10 @@ function Home() {
                             productName={product.productName}
                             productPrice={product.productPrice}
                             productImage={product.productImage}
+                            productId={product.productId}
+                            isAdded={product.isAdded}
                             addToCart={handleAddToCart}
+                            removeFromCart={handleRemoveFromCart}
                         />
                     </div>;
                 })}
